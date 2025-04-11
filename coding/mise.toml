@@ -1,0 +1,34 @@
+[tools]
+python = "3.13.2"
+
+[tasks.p]
+description = "prepare"
+run = [
+    "mkdir -p src/main/kotlin/{{arg(i=0)}}",
+    "sed \"s/PACKAGE/$(echo '{{arg(i=0)}}' | tr '/' '.')/\" Main.org.kt > src/main/kotlin/{{arg(i=0)}}/Main.kt"
+]
+
+[tasks.r]
+description = "run"
+run = [
+    "kotlinc Main.kt -include-runtime -d Main.jar",
+    "java -jar Main.jar"
+]
+dir = "{{cwd}}"
+
+[tasks.t]
+description = "test"
+run = [
+    "kotlinc Main.kt -include-runtime -d Main.jar",
+    "oj t --command 'java -jar Main.jar'"
+]
+dir = "{{cwd}}"
+
+[tasks.s]
+description = "submit"
+run = [
+    # remove package
+    "tail -n +2 Main.kt > MainSub.kt",
+    "oj s --yes MainSub.kt"
+]
+dir = "{{cwd}}"

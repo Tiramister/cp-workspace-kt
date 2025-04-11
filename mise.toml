@@ -1,0 +1,4 @@
+[tools]
+gradle = "latest"
+java = "17"
+kotlin = "1.8.20"
