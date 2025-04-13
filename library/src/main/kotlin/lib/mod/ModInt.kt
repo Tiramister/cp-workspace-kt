@@ -37,6 +37,13 @@ abstract class Mod {
         fun <T : Mod> T.new(x: Long): ModInt<T> = ModInt.new(x, this)
 
         fun <T : Mod> T.new(x: ULong): ModInt<T> = ModInt.new(x, this)
+
+        fun <T : Mod> T.array(size: Int): ModIntArray<T> = ModIntArray(size, this)
+
+        fun <T : Mod> T.array(
+            size: Int,
+            init: (Int) -> ModInt<T>,
+        ): ModIntArray<T> = ModIntArray(size, init, this)
     }
 }
 
