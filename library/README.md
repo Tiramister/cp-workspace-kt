@@ -21,3 +21,9 @@
 ```sh
 ./gradlew spotlessApply
 ```
+
+[Dokka](https://github.com/Kotlin/dokka) でドキュメントを生成する。`build/dokka/html` に出力される。
+
+```sh
+./gradlew dokkaHtml
+```
